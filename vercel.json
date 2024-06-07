@@ -8,9 +8,15 @@
     ],
     "routes": [
         {
+            "src": "/generate",
+            "dest": "/app.py",
+            "methods": [
+                "POST"
+            ]
+        },
+        {
             "src": "/(.*)",
-            "dest": "/generate",
-            "methods" : ["POST"]
+            "dest": "/"
         }
     ]
 }

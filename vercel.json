@@ -8,14 +8,9 @@
     ],
     "routes": [
         {
-            "src": "/generate",
+            "src": "/(.*)",
             "dest": "/generate",
             "methods" : ["POST"]
-            
-        },
-        {
-            "src": "/(.*)",
-            "dest": "/"
         }
     ]
 }

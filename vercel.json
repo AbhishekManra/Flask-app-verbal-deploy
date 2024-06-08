@@ -6,17 +6,6 @@
             "use": "@vercel/python"
         }
     ],
-    "routes": [
-        {
-            "src": "/generate",
-            "methods": ["POST", "OPTIONS"],
-            "dest": "/index.py"
-        },
-        {
-            "src": "/(.*)",
-            "dest": "/"
-        }
-    ],
     "headers": [
         {
             "source": "/generate",

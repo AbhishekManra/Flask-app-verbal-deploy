@@ -23,7 +23,7 @@
             "headers": [
                 {
                     "key": "Access-Control-Allow-Origin",
-                    "value": "https://gew3.bumble.com"
+                    "value": "*"
                 },
                 {
                     "key": "Access-Control-Allow-Methods",
@@ -31,7 +31,15 @@
                 },
                 {
                     "key": "Access-Control-Allow-Headers",
-                    "value": "Content-Type"
+                    "value": "Content-Type, Accept"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
                 }
             ]
         }

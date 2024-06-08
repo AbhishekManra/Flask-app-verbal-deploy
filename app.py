@@ -21,8 +21,9 @@ def to_markdown(text):
 @app.route('/generate', methods=['POST'])
 def generate_content():
     if request.content_type == 'application/json':
-        data = request.json
-        print(data)
+        # data = request.json
+        data = request.get_json()
+        # print(data)
         # data = request.json.get('data')
         # print(data.messages[0])
         messages = data.get('messages', []) 

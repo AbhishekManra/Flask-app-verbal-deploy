@@ -20,28 +20,31 @@ def to_markdown(text):
 
 @app.route('/generate', methods=['POST'])
 def generate_content():
-    data = request.json
-    print(data)
-    # data = request.json.get('data')
-    # print(data.messages[0])
-    messages = data.get('messages', []) 
-    # messages = data.messages[0] 
-    conversation = '\n'.join([f"{msg['sender']}: {msg['content']}" for msg in messages])
-    # print(conversation)
-    prompt = f"{conversation}\n\nThis is the conversation between me and a Person on Bumble (dating site). Looking at the conversation, generate a message on behalf of me ,my name is Abhishek, just give a response from my side nothing extra.\n "
-    print(prompt)
-    response = model.generate_content(prompt)
-    # result = response.candidates[0].content.parts[0].text
-    try: # make a statement that changes the api
-        result = response.candidates[0].content.parts[0].text
+    if request.content_type == 'application/json':
+        data = request.json
+        print(data)
+        # data = request.json.get('data')
+        # print(data.messages[0])
+        messages = data.get('messages', []) 
+        # messages = data.messages[0] 
+        conversation = '\n'.join([f"{msg['sender']}: {msg['content']}" for msg in messages])
+        # print(conversation)
+        prompt = f"{conversation}\n\nThis is the conversation between me and a Person on Bumble (dating site). Looking at the conversation, generate a message on behalf of me ,my name is Abhishek, just give a response from my side nothing extra.\n "
+        print(prompt)
+        response = model.generate_content(prompt)
+        # result = response.candidates[0].content.parts[0].text
+        try: # make a statement that changes the api
+            result = response.candidates[0].content.parts[0].text
+            print(result)
+            # result = "sucess"
+        except IndexError:
+            return "Error retrieving response from API.", 500
+        # result = response.candidates[0].content.parts[0].text
+        print("This is the result")
         print(result)
-        # result = "sucess"
-    except IndexError:
-        return "Error retrieving response from API.", 500
-    # result = response.candidates[0].content.parts[0].text
-    print("This is the result")
-    print(result)
-    return jsonify({'result': result})
+        return jsonify({'result': result})
+    else:
+        return 'Unsupported Media Type', 415
 
 if __name__ == '__main__':
     app.run(debug=True)
